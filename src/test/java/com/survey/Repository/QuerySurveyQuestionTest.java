@@ -1,6 +1,7 @@
 package com.survey.Repository;
 
 import antlr.collections.List;
+import com.survey.DTO.SurveyRequestInfoDto;
 import com.survey.Entity.SurveyEntity;
 import com.survey.Entity.SurveyQuestionEntity;
 import com.survey.Repository.Command.CommandSurveyQuestionRepository;
@@ -80,5 +81,5 @@ public class QuerySurveyQuestionTest {
 
         // 주관식 질문이므로 choices 필드는 null 또는 비어야 함
         assertThat(savedQuestion2.getChoices()).isNull(); // 또는 .isEmpty()를 사용
-    }l
+    }
 }

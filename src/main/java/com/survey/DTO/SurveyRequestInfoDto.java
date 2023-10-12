@@ -1,10 +1,13 @@
 package com.survey.DTO;
 
 import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
 import lombok.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +43,7 @@ public class SurveyRequestInfoDto {
     /**
      * 설문 마감일
      */
-    @NotBlank
+    @NotNull
     private Date surveyDeadline;
 
     /**
@@ -52,17 +55,16 @@ public class SurveyRequestInfoDto {
     /**
      * 질문 내용
      */
-    @NotBlank
+    @NotEmpty
     private List<SurveyQuestionDto> surveyAnswer;
 
-    public SurveyEntity toEntity(SurveyQuestionDto surveyQuestionDto){
+    public SurveyEntity toEntity(){
         return SurveyEntity.builder()
                 .surveyTitle(getSurveyTitle())
                 .surveyRegistrants(getSurveyRegistrants())
                 .surveySubjects(getSurveySubjects())
-                .surveyDeadline(getSurveyDeadline())
+                .surveyDeadline(new Date())
                 .surveyDescription(getSurveyDescription())
-                .surveyAnswer((List<SurveyQuestionEntity>) surveyQuestionDto)
                 .build();
     }
 }

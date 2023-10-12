@@ -4,6 +4,7 @@ import com.survey.Entity.SurveyQuestionEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -36,10 +37,11 @@ public class SurveyQuestionDto {
     /**
      * 객관식 질문의 선택지 목록
      */
+    @NotEmpty  // @NotBlank 대신 @NotEmpty를 사용하여 빈 리스트는 허용하지 않음
     private List<String> choices;
 
-    public List<SurveyQuestionEntity> toEntity(){
-        return (List<SurveyQuestionEntity>) SurveyQuestionEntity.builder()
+    public SurveyQuestionEntity toEntity(){
+        return SurveyQuestionEntity.builder()
                 .surveyContent(getSurveyContent())
                 .surveyType(getSurveyType())
                 .choices(getChoices())
