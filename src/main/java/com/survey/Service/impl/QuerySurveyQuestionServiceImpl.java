@@ -1,6 +1,8 @@
 package com.survey.Service.impl;
 
 import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Global.Exception.ClientException;
+import com.survey.Global.Exception.ErrorCode;
 import com.survey.Repository.Query.QuerySurveyQuestionRepository;
 import com.survey.Service.inter.QuerySurveyQuestionService;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +17,19 @@ public class QuerySurveyQuestionServiceImpl implements QuerySurveyQuestionServic
     private final QuerySurveyQuestionRepository querySurveyQuestionRepository;
 
 
+    /**
+     * SurveyQuestion Entity를 찾는 메서드 입니다.
+     * @param id
+     * @return SurveyQuestionEntity
+     * @author 황시준
+     * @since  1.0
+     */
     @Override
     public SurveyQuestionEntity findSyrveyQuestionById(Long id) {
-        return null;
+        return querySurveyQuestionRepository.findById(id)
+                .orElseThrow(() -> new ClientException(
+                        ErrorCode.SURVEY_QUESTION_NOT_EXIST,
+                        "SurveyQuestion Id: " + id
+                ));
     }
 }

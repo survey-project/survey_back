@@ -1,5 +1,6 @@
 package com.survey.Controller;
 
+import com.survey.DTO.SurveyDto;
 import com.survey.DTO.SurveyRequestInfoDto;
 import com.survey.DTO.SurveyResponseInfoDto;
 import com.survey.Service.inter.CommandSurveyService;
@@ -18,11 +19,14 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class SurveyController {
     private final CommandSurveyService surveyService;
+    private final QuerySurveySer
     @PostMapping("/submit")
-    public SurveyResponseInfoDto submit(@RequestBody @Valid SurveyRequestInfoDto surveyRequestInfoDto) throws Exception {
+    public SurveyDto submit(@RequestBody @Valid SurveyRequestInfoDto surveyRequestInfoDto) throws Exception {
         return surveyService.createSurvey(surveyRequestInfoDto);
     }
 
-    @GetMapping("/result")
-    public Survey
+    @GetMapping("/result/{surveyId}")
+    public SurveyDto result(@PathVariable Long Id){
+        SurveyDto surveyDto =
+    }
 }

@@ -47,4 +47,12 @@ public class SurveyQuestionDto {
                 .choices(getChoices())
                 .build();
     }
+
+    public static SurveyQuestionDto fromEntity(SurveyQuestionEntity surveyQuestionEntity) {
+        return new SurveyQuestionDto(
+                surveyQuestionEntity.getSurveyContent(),
+                surveyQuestionEntity.getSurveyType(),
+                surveyQuestionEntity.getChoices()
+        );
+    }
 }

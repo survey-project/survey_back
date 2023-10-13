@@ -20,4 +20,6 @@ public class QueryDslSurveyRepository implements QuerySurveyRepository {
                 .where(survey.id.eq(id))
                 .fetchFirst());
     }
+
+
 }

@@ -12,4 +12,5 @@ import lombok.Setter;
 @Setter
 public class SurveyResponseInfoDto {
     private String name;
+
 }

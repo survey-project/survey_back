@@ -1,4 +1,4 @@
-package com.survey.Config;
+package com.survey.Global.Config;
 
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
