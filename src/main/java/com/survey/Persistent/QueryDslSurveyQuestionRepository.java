@@ -21,6 +21,5 @@ public class QueryDslSurveyQuestionRepository implements QuerySurveyQuestionRepo
         return Optional.ofNullable(jpaQueryFactory.selectFrom(qSurveyQuestionEntity)
                 .where(qSurveyQuestionEntity.id.eq(id))
                 .fetchFirst());
-
     }
 }

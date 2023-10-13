@@ -19,7 +19,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class SurveyController {
     private final CommandSurveyService surveyService;
-    private final QuerySurveySer
     @PostMapping("/submit")
     public SurveyDto submit(@RequestBody @Valid SurveyRequestInfoDto surveyRequestInfoDto) throws Exception {
         return surveyService.createSurvey(surveyRequestInfoDto);
@@ -27,6 +26,7 @@ public class SurveyController {
 
     @GetMapping("/result/{surveyId}")
     public SurveyDto result(@PathVariable Long Id){
-        SurveyDto surveyDto =
+        //SurveyDto surveyDto =
+        return null;
     }
 }
