@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: studyProject-ApiServer
+    name: Survey-Project
   h2:
     console:
       enabled: true

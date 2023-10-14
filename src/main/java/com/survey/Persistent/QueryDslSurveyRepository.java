@@ -21,5 +21,13 @@ public class QueryDslSurveyRepository implements QuerySurveyRepository {
                 .fetchFirst());
     }
 
+    @Override
+    public Optional<SurveyEntity> findSurveyBySurveyName(String name) {
+        QSurveyEntity survey = QSurveyEntity.surveyEntity;
+        return Optional.ofNullable(jpaQueryFactory.selectFrom(survey)
+                .where(survey.surveyTitle.eq(name))
+                .fetchFirst());
+    }
+
 
 }

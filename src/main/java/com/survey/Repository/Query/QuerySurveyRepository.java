@@ -13,4 +13,7 @@ public interface QuerySurveyRepository {
      * @since  1.0
      */
     Optional<SurveyEntity> findById(Long id);
+
+    Optional<SurveyEntity> findSurveyBySurveyName(String name);
+
 }

@@ -44,5 +44,15 @@ public class SurveyQuestionEntity {
      * 설문조사 테이블과 N:1
      */
     @ManyToOne
+    @JoinColumn(name = "survey_id") // SURVEY_ID 컬럼을 생성
     private SurveyEntity survey;
+
+    public SurveyQuestionEntity toEntity(SurveyEntity survey){
+        return SurveyQuestionEntity.builder()
+                .surveyContent(getSurveyContent())
+                .surveyType(getSurveyType())
+                .choices(getChoices())
+                .survey(survey)
+                .build();
+    }
 }

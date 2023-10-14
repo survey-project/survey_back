@@ -1,10 +1,12 @@
 package com.survey.DTO;
 
+import com.survey.Entity.SurveyEntity;
 import com.survey.Entity.SurveyQuestionEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -31,8 +33,8 @@ public class SurveyQuestionDto {
      * 3. 단답형
      * 4. 장문형
      */
-    @NotBlank
-    private int surveyType;
+    @NotNull
+    private Integer surveyType;
 
     /**
      * 객관식 질문의 선택지 목록
@@ -40,9 +42,18 @@ public class SurveyQuestionDto {
     @NotEmpty  // @NotBlank 대신 @NotEmpty를 사용하여 빈 리스트는 허용하지 않음
     private List<String> choices;
 
-    public SurveyQuestionEntity toEntity(){
+    public SurveyQuestionEntity toEntity(SurveyEntity survey) {
         return SurveyQuestionEntity.builder()
                 .surveyContent(getSurveyContent())
+                .surveyType(getSurveyType())
+                .choices(getChoices())
+                .survey(survey)
+                .build();
+    }
+
+    public SurveyQuestionEntity toEntity(){
+        return SurveyQuestionEntity.builder()
+                .surveyContent((getSurveyContent()))
                 .surveyType(getSurveyType())
                 .choices(getChoices())
                 .build();

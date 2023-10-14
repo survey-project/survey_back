@@ -1,15 +1,15 @@
 package com.survey.DTO;
 
 import com.survey.Entity.SurveyEntity;
+import com.survey.Entity.SurveyQuestionEntity;
 import lombok.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 설문 정보를 입력받을 때 사용하는 DTO입니다.
@@ -58,13 +58,23 @@ public class SurveyRequestInfoDto {
     @NotEmpty
     private List<SurveyQuestionDto> surveyAnswer;
 
-    public SurveyEntity toEntity(){
+    public SurveyEntity toEntity() {
+        List<SurveyQuestionEntity> questionEntities = getQuestionEntities();
+
         return SurveyEntity.builder()
-                .surveyTitle(getSurveyTitle())
-                .surveyRegistrants(getSurveyRegistrants())
-                .surveySubjects(getSurveySubjects())
+                .surveyTitle(surveyTitle)
+                .surveyRegistrants(surveyRegistrants)
+                .surveySubjects(surveySubjects)
                 .surveyDeadline(new Date())
-                .surveyDescription(getSurveyDescription())
+                .surveyDescription(surveyDescription)
+                .surveyAnswer(questionEntities)
                 .build();
     }
+
+    public List<SurveyQuestionEntity> getQuestionEntities(){
+        return surveyAnswer.stream()
+                .map(SurveyQuestionDto::toEntity)
+                .collect(Collectors.toList());
+    }
+
 }

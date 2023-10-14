@@ -1,6 +1,7 @@
 package com.survey.DTO;
 
 import com.survey.Entity.SurveyEntity;
+import com.survey.Entity.SurveyQuestionEntity;
 import lombok.*;
 
 import java.util.Date;
@@ -48,8 +49,7 @@ public class SurveyDto {
 
 
     public static SurveyDto fromEntity(SurveyEntity survey) {
-        List<SurveyQuestionDto> questionDto =
-                survey.getSurveyAnswer().stream()
+        List<SurveyQuestionDto> questionDto = survey.getSurveyAnswer().stream()
                 .map(SurveyQuestionDto::fromEntity)
                 .collect(Collectors.toList());
 
@@ -64,4 +64,5 @@ public class SurveyDto {
                 .build();
         return surveyDtoBuilder;
     }
+
 }

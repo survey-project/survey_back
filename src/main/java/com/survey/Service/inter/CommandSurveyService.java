@@ -2,6 +2,7 @@ package com.survey.Service.inter;
 
 import com.survey.DTO.SurveyDto;
 import com.survey.DTO.SurveyRequestInfoDto;
+import com.survey.Entity.SurveyEntity;
 
 public interface CommandSurveyService {
     /**

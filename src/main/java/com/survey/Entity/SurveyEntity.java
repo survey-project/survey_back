@@ -3,6 +3,7 @@ package com.survey.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,5 +48,5 @@ public class SurveyEntity {
      * 설문조사 응답내용
      */
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<SurveyQuestionEntity> surveyAnswer;
+    private List<SurveyQuestionEntity> surveyAnswer = new ArrayList<>();
 }
