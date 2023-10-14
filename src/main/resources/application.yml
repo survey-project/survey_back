@@ -19,3 +19,4 @@ spring:
     show-sql: true
     generate-ddl: true
     defer-datasource-initialization: true
+
