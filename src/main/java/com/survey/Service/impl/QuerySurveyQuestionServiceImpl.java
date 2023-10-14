@@ -8,6 +8,7 @@ import com.survey.Service.inter.QuerySurveyQuestionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @RequiredArgsConstructor
@@ -16,16 +17,9 @@ import org.springframework.stereotype.Service;
 public class QuerySurveyQuestionServiceImpl implements QuerySurveyQuestionService {
     private final QuerySurveyQuestionRepository querySurveyQuestionRepository;
 
-
-    /**
-     * SurveyQuestion Entity를 찾는 메서드 입니다.
-     * @param id
-     * @return SurveyQuestionEntity
-     * @author 황시준
-     * @since  1.0
-     */
     @Override
-    public SurveyQuestionEntity findSyrveyQuestionById(Long id) {
+    @Transactional(readOnly = true)
+    public SurveyQuestionEntity findSurveyQuestionById(Long id) {
         return querySurveyQuestionRepository.findById(id)
                 .orElseThrow(() -> new ClientException(
                         ErrorCode.SURVEY_QUESTION_NOT_EXIST,

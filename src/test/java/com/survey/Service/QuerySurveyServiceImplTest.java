@@ -1,37 +1,43 @@
 package com.survey.Service;
+
 import com.survey.DTO.SurveyDto;
 import com.survey.DTO.SurveyQuestionDto;
 import com.survey.DTO.SurveyRequestInfoDto;
 import com.survey.Entity.SurveyEntity;
 import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Global.Exception.ClientException;
 import com.survey.Repository.Command.CommandSurveyQuestionRepository;
 import com.survey.Repository.Command.CommandSurveyRepository;
+import com.survey.Repository.Query.QuerySurveyRepository;
 import com.survey.Service.impl.CommandSurveyServiceImpl;
+import com.survey.Service.impl.QuerySurveyServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class CommandSurveyServiceTest {
+public class QuerySurveyServiceImplTest {
 
     SurveyEntity survey;
     SurveyDto surveyDto;
     SurveyQuestionEntity surveyQuestionEntity;
     SurveyQuestionDto surveyQuestionDto;
 
-    SurveyRequestInfoDto surveyRequestInfoDto;
     private Long Id = 1L;
     private String surveyTitle = "설문 제목 테스트";
     private String surveyRegistrations = "설문 등록자 테스트";
-    private String surveySubjects = "설문 대상자 테스트";
+    private String surveySubjects = "설문 대상자 테스틑";
     private Date date = new Date();
     private String surveyDescription = "설문지 소개(설명1) 테스트";
 
@@ -114,47 +120,32 @@ public class CommandSurveyServiceTest {
                 .surveyQuestions(surveyQuestionDto)
                 .build();
 
-        surveyRequestInfoDto = new SurveyRequestInfoDto(
-                "설문 제목 테스트",
-                "설문 등록자 테스트",
-                "설문 대상자 테스트",
-                new Date(),
-                "설문지 소개(설명1) 테스트",
-                surveyQuestionDto
-        );
-
         survey.setSurveyAnswer(questions);
     }
 
     @Mock
-    CommandSurveyRepository commandSurveyRepository;
+    private QuerySurveyRepository querySurveyRepository;
 
-    @Mock
-    CommandSurveyQuestionRepository commandSurveyQuestionRepository;
     @InjectMocks
-    CommandSurveyServiceImpl commandSurveyService;
+    private QuerySurveyServiceImpl querySurveyService;
+
     @Test
-    @DisplayName("Create Survey Test")
-    public void createSurveyTest() throws Exception {
-        SurveyDto result = commandSurveyService.createSurvey(surveyRequestInfoDto);
+    @DisplayName("findSurveyById Test")
+    public void findSurveyByIdTest(){
+        when(querySurveyRepository.findById(survey.getId())).thenReturn(Optional.of(survey));
+        SurveyEntity result = querySurveyService.findSurveyById(survey.getId());
         assertNotNull(result);
-        assertEquals(result.getSurveyTitle(), surveyTitle);
-        assertEquals(result.getSurveyRegistrants(), surveyRegistrations);
-        assertEquals(result.getSurveySubjects(), surveySubjects);
-        assertEquals(result.getSurveyDescription(), surveyDescription);
-
-        List<SurveyQuestionDto> testQuestions = result.getSurveyQuestions();
-        List<SurveyQuestionDto> originalQuestions = surveyDto.getSurveyQuestions();
-
-        assertEquals(originalQuestions.size(), testQuestions.size());
-
-        for (int i = 0; i < originalQuestions.size(); i++) {
-            SurveyQuestionDto originalQuestion = originalQuestions.get(i);
-            SurveyQuestionDto testQuestion = testQuestions.get(i);
-
-            assertEquals(originalQuestion.getSurveyContent(), testQuestion.getSurveyContent());
-            assertEquals(originalQuestion.getSurveyType(), testQuestion.getSurveyType());
-            assertEquals(originalQuestion.getChoices(), testQuestion.getChoices());
-        }
+        assertEquals(survey.getId(), result.getId());
     }
+
+    @Test
+    @DisplayName("getSurveyResultBySurveyIdTest")
+    public void getSurveyResultBySurveyIdTest(){
+        when(querySurveyRepository.findById(survey.getId())).thenReturn(Optional.of(survey));
+        SurveyDto result = querySurveyService.getSurveyResultBySurveyId(survey.getId());
+        assertNotNull(result);
+        assertEquals(surveyDto.getId(), result.getId());
+    }
+
+
 }

@@ -37,7 +37,7 @@ public class SurveyController {
 
     @GetMapping("/result/{surveyId}")
     public EntityModel<ResultResponse> result(@PathVariable Long Id) throws Exception {
-        SurveyDto surveyDto = querySurveyService.getSurveyInfoBySurveyId(Id);
+        SurveyDto surveyDto = querySurveyService.getSurveyResultBySurveyId(Id);
         ResultResponse resultResponse = ResultResponse.of(ResultCode.GET_SURVEY_REQUEST_SUCCESS, surveyDto);
 
         EntityModel<ResultResponse> entityModel = EntityModel.of(resultResponse);

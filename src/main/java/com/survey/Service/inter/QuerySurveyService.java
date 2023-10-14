@@ -16,5 +16,5 @@ public interface QuerySurveyService {
      * @param Id
      * @return SurveyDto
      */
-    SurveyDto getSurveyInfoBySurveyId(Long Id);
+    SurveyDto getSurveyResultBySurveyId(Long Id);
 }

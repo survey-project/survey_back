@@ -19,6 +19,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 public class SurveyQuestionDto {
     /**
      * 질문 내용

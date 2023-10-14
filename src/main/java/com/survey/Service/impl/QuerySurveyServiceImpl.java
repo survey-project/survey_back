@@ -29,7 +29,7 @@ public class QuerySurveyServiceImpl implements QuerySurveyService {
 
     @Override
     @Transactional(readOnly = true)
-    public SurveyDto getSurveyInfoBySurveyId(Long Id) {
+    public SurveyDto getSurveyResultBySurveyId(Long Id) {
         SurveyEntity survey = querySurveyRepository.findById(Id)
                 .orElseThrow(() -> new ClientException(
                         ErrorCode.SURVEY_NOT_EXIST,

@@ -14,4 +14,14 @@ public interface CommandSurveyService {
      * @since  1.0
      */
     SurveyDto createSurvey(SurveyRequestInfoDto surveyRequestInfoDto) throws Exception;
+
+    /**
+     * 설문조사 결과를 가져오는 기능입니다.
+     * @param Id
+     * @return SurveyDto
+     * @throws Exception
+     * @author 황시준
+     * @since  1.0
+     */
+    SurveyDto getSurveyResult(Long Id) throws Exception;
 }
