@@ -1,10 +1,14 @@
-package com.survey.Entity;
+package com.survey.Entity.Admin;
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 설문에 대한 질문을 정의하는 Entity 입니다.
+ */
 @Entity
 @Getter
 @Setter
@@ -30,15 +34,19 @@ public class SurveyQuestionEntity {
      * 4. 장문형
      */
     @Column
-    private int surveyType;
+    private String surveyType;
 
     /**
      * 객관식 질문의 선택지 목록
      */
+    //@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<SurveyQuestionChoiceEntity> choices = new ArrayList<>();
+
     @ElementCollection
     @CollectionTable(name = "question_choices", joinColumns = @JoinColumn(name = "question_id"))
     @Column(name = "choice")
     private List<String> choices;
+
 
     /**
      * 설문조사 테이블과 N:1
@@ -46,6 +54,7 @@ public class SurveyQuestionEntity {
     @ManyToOne
     @JoinColumn(name = "survey_id") // SURVEY_ID 컬럼을 생성
     private SurveyEntity survey;
+
 
     public SurveyQuestionEntity toEntity(SurveyEntity survey){
         return SurveyQuestionEntity.builder()

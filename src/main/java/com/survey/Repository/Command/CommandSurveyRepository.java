@@ -1,6 +1,6 @@
 package com.survey.Repository.Command;
 
-import com.survey.Entity.SurveyEntity;
+import com.survey.Entity.Admin.SurveyEntity;
 
 /**
  * 설문조사 등록 및 수정 관련 Repository
@@ -16,4 +16,12 @@ public interface CommandSurveyRepository {
      * @since  1.0
      */
     SurveyEntity save(SurveyEntity survey);
+
+    /**
+     * 생성한 설문조사를 삭제합니다.
+     * @param Id
+     * @author 황시준
+     * @sicne  1.0
+     */
+    String deleteById(Long Id);
 }

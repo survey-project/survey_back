@@ -1,6 +1,6 @@
 package com.survey.Repository.Query;
 
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 
 import java.util.Optional;
 

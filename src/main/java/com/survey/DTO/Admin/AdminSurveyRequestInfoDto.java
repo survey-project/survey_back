@@ -1,7 +1,7 @@
-package com.survey.DTO;
+package com.survey.DTO.Admin;
 
-import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Entity.Admin.SurveyEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 설문 정보를 입력받을 때 사용하는 DTO입니다.
+ * 설문조사를 생성할 때 사용하는 DTO입니다.
  * @author ghkdtlwns987
  * @since  1.0
  */
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SurveyRequestInfoDto {
+public class AdminSurveyRequestInfoDto {
     /**
      * 설문 제목
      */
@@ -56,7 +56,7 @@ public class SurveyRequestInfoDto {
      * 질문 내용
      */
     @NotEmpty
-    private List<SurveyQuestionDto> surveyAnswer;
+    private List<AdminSurveyQuestionDto> surveyAnswer;
 
     public SurveyEntity toEntity() {
         List<SurveyQuestionEntity> questionEntities = getQuestionEntities();
@@ -73,7 +73,7 @@ public class SurveyRequestInfoDto {
 
     public List<SurveyQuestionEntity> getQuestionEntities(){
         return surveyAnswer.stream()
-                .map(SurveyQuestionDto::toEntity)
+                .map(AdminSurveyQuestionDto::toEntity)
                 .collect(Collectors.toList());
     }
 

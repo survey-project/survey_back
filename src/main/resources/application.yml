@@ -20,3 +20,11 @@ spring:
     generate-ddl: true
     defer-datasource-initialization: true
 
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+

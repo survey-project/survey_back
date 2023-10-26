@@ -1,9 +1,7 @@
 package com.survey.Repository;
 
-import antlr.collections.List;
-import com.survey.DTO.SurveyRequestInfoDto;
-import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Entity.Admin.SurveyEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 import com.survey.Repository.Command.CommandSurveyQuestionRepository;
 import com.survey.Repository.Command.CommandSurveyRepository;
 import com.survey.Repository.Query.QuerySurveyQuestionRepository;
@@ -46,14 +44,14 @@ public class QuerySurveyQuestionTest {
 
         SurveyQuestionEntity question1 = SurveyQuestionEntity.builder()
                 .surveyContent("질문 1 내용")
-                .surveyType(1)
+                .surveyType(String.valueOf(1))
                 .choices(Arrays.asList("선택지 1", "선택지 2", "선택지 3"))
                 .survey(savedSurvey)
                 .build();
 
         SurveyQuestionEntity question2 = SurveyQuestionEntity.builder()
                 .surveyContent("질문 2 내용")
-                .surveyType(2)
+                .surveyType(String.valueOf(2))
                 .survey(savedSurvey)
                 .build();
 

@@ -1,7 +1,7 @@
-package com.survey.DTO;
+package com.survey.DTO.Admin;
 
-import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Entity.Admin.SurveyEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * 설문조사 질문들에 대한 Request 요청을 받는 Dto 입니다.
+ * 설문조사 질문들에 대한 선택지를 입력받는 Dto 입니다.
  * @author ghkdtlwns987
  * @since  1.0
  */
@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class SurveyQuestionDto {
+public class AdminSurveyQuestionDto {
     /**
      * 질문 내용
      */
@@ -35,13 +35,14 @@ public class SurveyQuestionDto {
      * 4. 장문형
      */
     @NotNull
-    private Integer surveyType;
+    private String surveyType;
 
     /**
      * 객관식 질문의 선택지 목록
      */
-    @NotEmpty  // @NotBlank 대신 @NotEmpty를 사용하여 빈 리스트는 허용하지 않음
+    @NotEmpty
     private List<String> choices;
+
 
     public SurveyQuestionEntity toEntity(SurveyEntity survey) {
         return SurveyQuestionEntity.builder()
@@ -54,14 +55,14 @@ public class SurveyQuestionDto {
 
     public SurveyQuestionEntity toEntity(){
         return SurveyQuestionEntity.builder()
-                .surveyContent((getSurveyContent()))
+                .surveyContent(getSurveyContent())
                 .surveyType(getSurveyType())
                 .choices(getChoices())
                 .build();
     }
 
-    public static SurveyQuestionDto fromEntity(SurveyQuestionEntity surveyQuestionEntity) {
-        return new SurveyQuestionDto(
+    public static AdminSurveyQuestionDto fromEntity(SurveyQuestionEntity surveyQuestionEntity) {
+        return new AdminSurveyQuestionDto(
                 surveyQuestionEntity.getSurveyContent(),
                 surveyQuestionEntity.getSurveyType(),
                 surveyQuestionEntity.getChoices()

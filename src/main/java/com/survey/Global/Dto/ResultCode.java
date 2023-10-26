@@ -27,7 +27,8 @@ public enum ResultCode {
 
     CREATE_SURVEY_REQUEST_SUCCESS(200, "S001", "설문을 생성했습니다."),
     SUBMIT_SURVEY_REQUEST_SUCCESS(200, "S002", "설문을 제출했습니다."),
-    GET_SURVEY_REQUEST_SUCCESS(200, "S003", "설문조사 결과를 불러왔습니다.");
+    GET_SURVEY_REQUEST_SUCCESS(200, "S003", "설문조사 결과를 불러왔습니다."),
+    DELETE_SURVEY_REQUEST_SUCCESS(200, "S004", "설문을 삭제했습니다.");
     private int status;
     private final String code;
     private final String message;

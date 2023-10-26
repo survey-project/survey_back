@@ -1,8 +1,8 @@
-package com.survey.Service.inter;
+package com.survey.Service.Admin.Inter;
 
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 
-public interface QuerySurveyQuestionService {
+public interface AdminQuerySurveyQuestionService {
     /**
      * SurveyQuestion Entity 를 찾는 메서드 입니다.
      * @param id

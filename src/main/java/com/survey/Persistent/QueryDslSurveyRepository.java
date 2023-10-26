@@ -1,8 +1,8 @@
 package com.survey.Persistent;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.survey.Entity.QSurveyEntity;
-import com.survey.Entity.SurveyEntity;
+import com.survey.Entity.Admin.QSurveyEntity;
+import com.survey.Entity.Admin.SurveyEntity;
 import com.survey.Repository.Query.QuerySurveyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -28,6 +28,4 @@ public class QueryDslSurveyRepository implements QuerySurveyRepository {
                 .where(survey.surveyTitle.eq(name))
                 .fetchFirst());
     }
-
-
 }

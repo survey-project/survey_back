@@ -32,7 +32,7 @@
   <summary>
   DB 설계
 </summary>
-현재까지 해당 DB를 가지고 프로젝트를 진행했습니다.
+현재까지 해당 DB를 가지고 프로젝트를 진행했습니다.(업데이트 됨.)
 
 ![img.png](img.png)
 </details>
@@ -40,22 +40,27 @@
 <details>
 <summary> 진행 사항 </summary>
 
-- 설문 제출 기능
-- 설문 불러오는 기능  
-- 테스트 코드 작성 완료
+- 설문 제출 기능(관리자)
+- 설문 불러오는 기능(관리자)
+- 테스트 코드 작성 완료(관리자)
+- 설문 응답하기(사용자)(진행중)(응답 메시지 반환 작업 필요)
 
 요청 확인
 
-- 설문 제출하기(POST) (http://localhost:9100/v1/api/survey/submit)
+- 설문 생성하기(POST) (http://localhost:9100/v1/api/admin/survey/createSubmit)
    ![img_2.png](img_2.png)  
     
 - 설문 불러오기(GET)  (http://localhost:9100/v1/api/survey/result/1)
 ![img_1.png](img_1.png)
 
+- 설문 삭제하기(DELETE) (http://localhost:9100/v1/api/admin/survey/delete/1)
+![img_3.png](img_3.png)
+
+- 설문 응답하기(POST)(현재 미완, 응답을 반환하는 과정 남음) (http://localhost:9100/v1/api/user/survey/submit/1)
+![img_4.png](img_4.png)
 </details>
 
 <details>
-
 <summary> 수행해야 할 내용 </summary>
 
 - CI/CD 파이프라인 적용

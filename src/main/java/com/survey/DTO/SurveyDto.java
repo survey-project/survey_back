@@ -1,7 +1,7 @@
 package com.survey.DTO;
 
-import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.DTO.Admin.AdminSurveyQuestionDto;
+import com.survey.Entity.Admin.SurveyEntity;
 import lombok.*;
 
 import java.util.Date;
@@ -45,12 +45,12 @@ public class SurveyDto {
     /**
      * 질문 내용
      */
-    private List<SurveyQuestionDto> surveyQuestions;
+    private List<AdminSurveyQuestionDto> surveyQuestions;
 
 
     public static SurveyDto fromEntity(SurveyEntity survey) {
-        List<SurveyQuestionDto> questionDto = survey.getSurveyAnswer().stream()
-                .map(SurveyQuestionDto::fromEntity)
+        List<AdminSurveyQuestionDto> questionDto = survey.getSurveyAnswer().stream()
+                .map(AdminSurveyQuestionDto::fromEntity)
                 .collect(Collectors.toList());
 
         SurveyDto surveyDtoBuilder = SurveyDto.builder()
@@ -64,5 +64,4 @@ public class SurveyDto {
                 .build();
         return surveyDtoBuilder;
     }
-
 }

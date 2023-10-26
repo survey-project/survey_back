@@ -1,4 +1,4 @@
-package com.survey.Entity;
+package com.survey.Entity.Admin;
 
 import lombok.*;
 
@@ -45,7 +45,7 @@ public class SurveyEntity {
     private String surveyDescription;
 
     /**
-     * 설문조사 응답내용
+     * 설문조사 질문 내용
      */
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SurveyQuestionEntity> surveyAnswer = new ArrayList<>();

@@ -1,38 +1,30 @@
 package com.survey.Service;
 
 import com.survey.DTO.SurveyDto;
-import com.survey.DTO.SurveyQuestionDto;
-import com.survey.DTO.SurveyRequestInfoDto;
-import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
-import com.survey.Global.Exception.ClientException;
-import com.survey.Repository.Command.CommandSurveyQuestionRepository;
-import com.survey.Repository.Command.CommandSurveyRepository;
+import com.survey.DTO.Admin.AdminSurveyQuestionDto;
+import com.survey.Entity.Admin.SurveyEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 import com.survey.Repository.Query.QuerySurveyRepository;
-import com.survey.Service.impl.CommandSurveyServiceImpl;
-import com.survey.Service.impl.QuerySurveyServiceImpl;
+import com.survey.Service.Admin.Impl.AdminQuerySurveyServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class QuerySurveyServiceImplTest {
+public class AdminQuerySurveyServiceImplTest {
 
     SurveyEntity survey;
     SurveyDto surveyDto;
     SurveyQuestionEntity surveyQuestionEntity;
-    SurveyQuestionDto surveyQuestionDto;
+    AdminSurveyQuestionDto adminSurveyQuestionDto;
 
     private Long Id = 1L;
     private String surveyTitle = "설문 제목 테스트";
@@ -61,7 +53,7 @@ public class QuerySurveyServiceImplTest {
         questions.add(
                 SurveyQuestionEntity.builder()
                         .surveyContent("질문 1 내용")
-                        .surveyType(1)
+                        .surveyType(String.valueOf(1))
                         .choices(Arrays.asList("선택지 1", "선택지 2", "선택지 3"))
                         .survey(survey)
                         .build()
@@ -70,7 +62,7 @@ public class QuerySurveyServiceImplTest {
         questions.add(
                 SurveyQuestionEntity.builder()
                         .surveyContent("질문 2 내용")
-                        .surveyType(3)
+                        .surveyType(String.valueOf(3))
                         .choices(Collections.emptyList())
                         .survey(survey)
                         .build()
@@ -79,33 +71,33 @@ public class QuerySurveyServiceImplTest {
         questions.add(
                 SurveyQuestionEntity.builder()
                         .surveyContent("질문 3 내용")
-                        .surveyType(2)
+                        .surveyType(String.valueOf(2))
                         .choices(Collections.emptyList())
                         .survey(survey)
                         .build()
         );
 
-        List<SurveyQuestionDto> surveyQuestionDto = new ArrayList<>();
-        surveyQuestionDto.add(
-                SurveyQuestionDto.builder()
+        List<AdminSurveyQuestionDto> adminSurveyQuestionDto = new ArrayList<>();
+        adminSurveyQuestionDto.add(
+                AdminSurveyQuestionDto.builder()
                         .surveyContent("질문 1 내용")
-                        .surveyType(1)
+                        .surveyType(String.valueOf(1))
                         .choices(Arrays.asList("선택지 1", "선택지 2", "선택지 3"))
                         .build()
         );
 
-        surveyQuestionDto.add(
-                SurveyQuestionDto.builder()
+        adminSurveyQuestionDto.add(
+                AdminSurveyQuestionDto.builder()
                         .surveyContent("질문 2 내용")
-                        .surveyType(3)
+                        .surveyType(String.valueOf(3))
                         .choices(Collections.emptyList())
                         .build()
         );
 
-        surveyQuestionDto.add(
-                SurveyQuestionDto.builder()
+        adminSurveyQuestionDto.add(
+                AdminSurveyQuestionDto.builder()
                         .surveyContent("질문 3 내용")
-                        .surveyType(3)
+                        .surveyType(String.valueOf(3))
                         .choices(Collections.emptyList())
                         .build()
         );
@@ -117,7 +109,7 @@ public class QuerySurveyServiceImplTest {
                 .surveySubjects(surveySubjects)
                 .surveyDeadline(date)
                 .surveyDescription(surveyDescription)
-                .surveyQuestions(surveyQuestionDto)
+                .surveyQuestions(adminSurveyQuestionDto)
                 .build();
 
         survey.setSurveyAnswer(questions);
@@ -127,7 +119,7 @@ public class QuerySurveyServiceImplTest {
     private QuerySurveyRepository querySurveyRepository;
 
     @InjectMocks
-    private QuerySurveyServiceImpl querySurveyService;
+    private AdminQuerySurveyServiceImpl querySurveyService;
 
     @Test
     @DisplayName("findSurveyById Test")

@@ -1,12 +1,12 @@
 package com.survey.Service;
 import com.survey.DTO.SurveyDto;
-import com.survey.DTO.SurveyQuestionDto;
-import com.survey.DTO.SurveyRequestInfoDto;
-import com.survey.Entity.SurveyEntity;
-import com.survey.Entity.SurveyQuestionEntity;
+import com.survey.DTO.Admin.AdminSurveyQuestionDto;
+import com.survey.DTO.Admin.AdminSurveyRequestInfoDto;
+import com.survey.Entity.Admin.SurveyEntity;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 import com.survey.Repository.Command.CommandSurveyQuestionRepository;
 import com.survey.Repository.Command.CommandSurveyRepository;
-import com.survey.Service.impl.CommandSurveyServiceImpl;
+import com.survey.Service.Admin.Impl.AdminCommandSurveyServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class CommandSurveyServiceTest {
+public class AdminCommandSurveyServiceTest {
 
     SurveyEntity survey;
     SurveyDto surveyDto;
     SurveyQuestionEntity surveyQuestionEntity;
-    SurveyQuestionDto surveyQuestionDto;
+    AdminSurveyQuestionDto adminSurveyQuestionDto;
 
-    SurveyRequestInfoDto surveyRequestInfoDto;
+    AdminSurveyRequestInfoDto adminSurveyRequestInfoDto;
     private Long Id = 1L;
     private String surveyTitle = "설문 제목 테스트";
     private String surveyRegistrations = "설문 등록자 테스트";
@@ -55,7 +55,7 @@ public class CommandSurveyServiceTest {
         questions.add(
                 SurveyQuestionEntity.builder()
                         .surveyContent("질문 1 내용")
-                        .surveyType(1)
+                        .surveyType(String.valueOf(1))
                         .choices(Arrays.asList("선택지 1", "선택지 2", "선택지 3"))
                         .survey(survey)
                         .build()
@@ -64,7 +64,7 @@ public class CommandSurveyServiceTest {
         questions.add(
                 SurveyQuestionEntity.builder()
                         .surveyContent("질문 2 내용")
-                        .surveyType(3)
+                        .surveyType(String.valueOf(3))
                         .choices(Collections.emptyList())
                         .survey(survey)
                         .build()
@@ -73,33 +73,33 @@ public class CommandSurveyServiceTest {
         questions.add(
                 SurveyQuestionEntity.builder()
                         .surveyContent("질문 3 내용")
-                        .surveyType(2)
+                        .surveyType(String.valueOf(2))
                         .choices(Collections.emptyList())
                         .survey(survey)
                         .build()
         );
 
-        List<SurveyQuestionDto> surveyQuestionDto = new ArrayList<>();
-        surveyQuestionDto.add(
-                SurveyQuestionDto.builder()
+        List<AdminSurveyQuestionDto> adminSurveyQuestionDto = new ArrayList<>();
+        adminSurveyQuestionDto.add(
+                AdminSurveyQuestionDto.builder()
                         .surveyContent("질문 1 내용")
-                        .surveyType(1)
+                        .surveyType(String.valueOf(1))
                         .choices(Arrays.asList("선택지 1", "선택지 2", "선택지 3"))
                         .build()
         );
 
-        surveyQuestionDto.add(
-                SurveyQuestionDto.builder()
+        adminSurveyQuestionDto.add(
+                AdminSurveyQuestionDto.builder()
                         .surveyContent("질문 2 내용")
-                        .surveyType(3)
+                        .surveyType(String.valueOf(3))
                         .choices(Collections.emptyList())
                         .build()
         );
 
-        surveyQuestionDto.add(
-                SurveyQuestionDto.builder()
+        adminSurveyQuestionDto.add(
+                AdminSurveyQuestionDto.builder()
                         .surveyContent("질문 3 내용")
-                        .surveyType(3)
+                        .surveyType(String.valueOf(3))
                         .choices(Collections.emptyList())
                         .build()
         );
@@ -111,16 +111,16 @@ public class CommandSurveyServiceTest {
                 .surveySubjects(surveySubjects)
                 .surveyDeadline(date)
                 .surveyDescription(surveyDescription)
-                .surveyQuestions(surveyQuestionDto)
+                .surveyQuestions(adminSurveyQuestionDto)
                 .build();
 
-        surveyRequestInfoDto = new SurveyRequestInfoDto(
+        adminSurveyRequestInfoDto = new AdminSurveyRequestInfoDto(
                 "설문 제목 테스트",
                 "설문 등록자 테스트",
                 "설문 대상자 테스트",
                 new Date(),
                 "설문지 소개(설명1) 테스트",
-                surveyQuestionDto
+                adminSurveyQuestionDto
         );
 
         survey.setSurveyAnswer(questions);
@@ -132,25 +132,25 @@ public class CommandSurveyServiceTest {
     @Mock
     CommandSurveyQuestionRepository commandSurveyQuestionRepository;
     @InjectMocks
-    CommandSurveyServiceImpl commandSurveyService;
+    AdminCommandSurveyServiceImpl commandSurveyService;
     @Test
     @DisplayName("Create Survey Test")
     public void createSurveyTest() throws Exception {
-        SurveyDto result = commandSurveyService.createSurvey(surveyRequestInfoDto);
+        SurveyDto result = commandSurveyService.createSurvey(adminSurveyRequestInfoDto);
         assertNotNull(result);
         assertEquals(result.getSurveyTitle(), surveyTitle);
         assertEquals(result.getSurveyRegistrants(), surveyRegistrations);
         assertEquals(result.getSurveySubjects(), surveySubjects);
         assertEquals(result.getSurveyDescription(), surveyDescription);
 
-        List<SurveyQuestionDto> testQuestions = result.getSurveyQuestions();
-        List<SurveyQuestionDto> originalQuestions = surveyDto.getSurveyQuestions();
+        List<AdminSurveyQuestionDto> testQuestions = result.getSurveyQuestions();
+        List<AdminSurveyQuestionDto> originalQuestions = surveyDto.getSurveyQuestions();
 
         assertEquals(originalQuestions.size(), testQuestions.size());
 
         for (int i = 0; i < originalQuestions.size(); i++) {
-            SurveyQuestionDto originalQuestion = originalQuestions.get(i);
-            SurveyQuestionDto testQuestion = testQuestions.get(i);
+            AdminSurveyQuestionDto originalQuestion = originalQuestions.get(i);
+            AdminSurveyQuestionDto testQuestion = testQuestions.get(i);
 
             assertEquals(originalQuestion.getSurveyContent(), testQuestion.getSurveyContent());
             assertEquals(originalQuestion.getSurveyType(), testQuestion.getSurveyType());

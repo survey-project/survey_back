@@ -1,6 +1,6 @@
 package com.survey.Repository.Query;
 
-import com.survey.Entity.SurveyEntity;
+import com.survey.Entity.Admin.SurveyEntity;
 
 import java.util.Optional;
 
@@ -14,6 +14,12 @@ public interface QuerySurveyRepository {
      */
     Optional<SurveyEntity> findById(Long id);
 
+    /**
+     * SurveyName으로 SurveyEntity를 검색하는 기능입니다.
+     * @param name
+     * @return Optional<SurveyEnitty>
+     * @author ghkdtlwns987
+     * @since  1.0
+     */
     Optional<SurveyEntity> findSurveyBySurveyName(String name);
-
 }
