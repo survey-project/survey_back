@@ -1,9 +1,10 @@
 package com.survey.DTO.User;
 
+import com.survey.DTO.Admin.AdminSurveyQuestionDto;
+import com.survey.Entity.Admin.SurveyQuestionEntity;
 import com.survey.Entity.User.UserSurveyEntity;
 import com.survey.Entity.User.UserSurveyQuestionEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,10 @@ import java.util.List;
  */
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class UserSurveyQuestionDto {
     /**
      * 설문 문제 번호
@@ -50,5 +55,11 @@ public class UserSurveyQuestionDto {
                 .surveyId(surveyId)
                 .response(getUserChoices())
                 .build();
+    }
+    public static UserSurveyQuestionDto fromEntity(UserSurveyQuestionEntity userSurveyQuestionEntity) {
+        return new UserSurveyQuestionDto(
+                userSurveyQuestionEntity.getSurveyId(),
+                userSurveyQuestionEntity.getSurveyContent(),
+                userSurveyQuestionEntity.getResponse());
     }
 }

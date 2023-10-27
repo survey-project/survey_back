@@ -5,11 +5,8 @@ import com.survey.DTO.User.UserSurveyRequestInfoDto;
 import com.survey.Entity.Admin.SurveyEntity;
 import com.survey.Entity.User.UserSurveyEntity;
 import com.survey.Entity.User.UserSurveyQuestionEntity;
-import com.survey.Repository.Command.CommandSurveyQuestionRepository;
-import com.survey.Repository.Command.CommandSurveyRepository;
 import com.survey.Repository.Command.UserCommandSurveyQuestionRepository;
 import com.survey.Repository.Command.UserCommandSurveyRepository;
-import com.survey.Service.Admin.Inter.AdminCommandSurveyService;
 import com.survey.Service.Admin.Inter.AdminQuerySurveyService;
 import com.survey.Service.User.Inter.UserCommandSurveyService;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +34,19 @@ public class UserCommandSurveyServiceImpl implements UserCommandSurveyService {
         SurveyEntity survey = adminQuerySurveyService.findSurveyById(surveyId);
         UserSurveyEntity userSurvey = userSurveyRequestInfoDto.toEntity(survey);
 
-        List<UserSurveyQuestionEntity> surveyResposne = getSurveyResponseEntities(userSurveyRequestInfoDto, userSurvey);
-        userSurvey.setQuestionResponses(surveyResposne);
+        List<UserSurveyQuestionEntity> surveyResposneEntities = getSurveyResponseEntities(userSurveyRequestInfoDto, userSurvey);
+        userSurvey.setQuestionResponses(surveyResposneEntities);
 
         userCommandSurveyRepository.save(userSurvey);
-        userCommandSurveyQuestionRepository.saveAll(surveyResposne);
+        userCommandSurveyQuestionRepository.saveAll(surveyResposneEntities);
 
-        return null;
+        return SurveyDto.fromEntity(survey);
+    }
+
+    @Override
+    public SurveyDto getSurveyResult(Long surveyId) throws Exception {
+        SurveyEntity survey = adminQuerySurveyService.findSurveyById(surveyId);
+        return SurveyDto.fromEntity(survey);
     }
 
     /**

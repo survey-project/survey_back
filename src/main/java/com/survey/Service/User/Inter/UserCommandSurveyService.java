@@ -15,4 +15,14 @@ public interface UserCommandSurveyService {
      * @since  1.0
      */
     SurveyDto submitSurvey(Long surveyId, UserSurveyRequestInfoDto userSurveyRequestInfoDto) throws Exception;
+
+    /**
+     * 설문조사 Id 를 기반으로 설문조사 결과를 가져오는 메서드 입니다.
+     * @param surveyId
+     * @return SurveyDto
+     * @throws Exception
+     * @author 황시준
+     * @since  1.0
+     */
+    SurveyDto getSurveyResult(Long surveyId) throws Exception;
 }

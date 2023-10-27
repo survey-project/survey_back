@@ -43,7 +43,8 @@
 - 설문 제출 기능(관리자)
 - 설문 불러오는 기능(관리자)
 - 테스트 코드 작성 완료(관리자)
-- 설문 응답하기(사용자)(진행중)(응답 메시지 반환 작업 필요)
+- 설문 응답하기(사용자)
+- 설문 결과 확인하기(사용자)
 
 요청 확인
 
@@ -56,8 +57,11 @@
 - 설문 삭제하기(DELETE) (http://localhost:9100/v1/api/admin/survey/delete/1)
 ![img_3.png](img_3.png)
 
-- 설문 응답하기(POST)(현재 미완, 응답을 반환하는 과정 남음) (http://localhost:9100/v1/api/user/survey/submit/1)
+- 설문 응답하기(POST) (http://localhost:9100/v1/api/user/survey/submit/1)
 ![img_4.png](img_4.png)
+
+- 설문 결과 확인하기(GET) (http://localhost:9100/v1/api/user/survey/submit/1)
+- ![img_5.png](img_5.png)
 </details>
 
 <details>

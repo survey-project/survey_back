@@ -11,5 +11,5 @@ public interface UserCommandSurveyRepository {
      * @author 황시준
      * @since  1.0
      */
-    SurveyEntity save(UserSurveyEntity survey);
+    UserSurveyEntity save(UserSurveyEntity survey);
 }

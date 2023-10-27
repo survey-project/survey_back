@@ -30,12 +30,11 @@ public class AdminSurveyController {
     /**
      * 설문을 제출하는 Controller 입니다.
      * @param adminSurveyRequestInfoDto
-     * @return EntityModel<ResultResponse>
      * @throws Exception
      * @author 황시준
      * @since  1.0
      */
-    @PostMapping("/createSubmit")
+    @PostMapping("/create")
     public EntityModel<ResultResponse> surveySubmit(@RequestBody @Valid AdminSurveyRequestInfoDto adminSurveyRequestInfoDto) throws Exception {
         SurveyDto surveyDto = adminCommandSurveyService.createSurvey(adminSurveyRequestInfoDto);
         ResultResponse resultResponse = ResultResponse.of(ResultCode.CREATE_SURVEY_REQUEST_SUCCESS, surveyDto);
@@ -48,7 +47,6 @@ public class AdminSurveyController {
     /**
      * 설문 결과를 조회하는 Controller 입니다.
      * @param surveyId
-     * @return EntityModel<ResultResponse>
      * @throws Exception
      * @author 황시준
      * @since  1.0
@@ -67,7 +65,6 @@ public class AdminSurveyController {
     /**
      * 설문을 삭제하는 메서드 입니다.
      * @param surveyId
-     * @return EntityModel<ResultResponse>
      * @throws Exception
      * @author 황시준
      * @sicne  1.0

@@ -43,6 +43,8 @@ public class UserSurveyRequestInfoDto {
                 .build();
     }
 
+
+
     public List<UserSurveyQuestionEntity> getUserSurveyQuestionEntities(Long surveyId){
         return surveyResponse.stream()
                 .map(UserSurveyQuestionDto -> UserSurveyQuestionDto.toEntity(surveyId))
