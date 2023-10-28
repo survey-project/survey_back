@@ -34,7 +34,7 @@
 </summary>
 현재까지 해당 DB를 가지고 프로젝트를 진행했습니다.(업데이트 됨.)
 
-![img.png](img.png)
+![img_6.png](img_6.png)
 </details>
 
 <details>

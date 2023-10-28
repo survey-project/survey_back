@@ -1,4 +1,4 @@
-package com.survey.Service;
+package com.survey.Service.Admin;
 
 import com.survey.DTO.SurveyDto;
 import com.survey.DTO.Admin.AdminSurveyQuestionDto;
