@@ -20,7 +20,9 @@ spring:
     generate-ddl: true
     defer-datasource-initialization: true
 
-logging:
+  thymeleaf:
+    prefix=classpath:src/main/resources
+
   level:
     org:
       hibernate:
