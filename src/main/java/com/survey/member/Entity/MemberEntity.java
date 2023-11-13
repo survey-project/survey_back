@@ -63,4 +63,22 @@ public class MemberEntity {
 
         return memberEntity;
     }
+
+    public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setUserNo(memberEntity.getUserNo());
+        memberEntity.setUserEmail(memberEntity.getUserEmail());
+        memberEntity.setUserPw(memberEntity.getUserPw());
+        memberEntity.setUserGender(memberEntity.getUserGender());
+        memberEntity.setUserDep(memberEntity.getUserDep());
+        memberEntity.setUserGrade(memberEntity.getUserGrade());
+        memberEntity.setUserNum(memberEntity.getUserNum());
+        memberEntity.setUserType(memberEntity.getUserType());
+        memberEntity.setUserDate(memberEntity.getUserDate());
+        memberEntity.setUserName(memberEntity.getUserName());
+        memberEntity.setUserNick(memberEntity.getUserNick());
+
+        return memberEntity;
+    }
 }
+
