@@ -20,6 +20,7 @@
 - REST API
 - HATEOS
 - QueryDSL
+- OOP
 </details>
 
 <details>
