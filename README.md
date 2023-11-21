@@ -19,7 +19,7 @@
 - JPA
 - REST API
 - HATEOS
-
+- QueryDSL
 </details>
 
 <details>
